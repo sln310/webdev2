@@ -2,8 +2,8 @@
 const form = document.getElementById("add");
 const input = document.getElementById("add-input");
 const ul = document.getElementById("list");
-// const li = document.getElementById("li");
-// const p = document.getElementById("p");
+// const li = document.querySelector("li");
+const template = document.querySelector("li");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -14,29 +14,13 @@ form.addEventListener("submit", function (event) {
 function add(text) {
   let textText = input.value;
 
-  if (text) {
-    textText = text.text;
-  }
-
   if (textText) {
-    const li = document.createElement("li");
+    const p = document.createElement("li");
 
-    li.innerText = textText;
-    li.classList.add("list");
+    p.innerText = textText;
 
-    if (text && text.completed) {
-      li.classList.add("text-decoration-line-through");
-    }
-
-    li.addEventListener("contextmenu", function (event) {
-      event.preventDefault();
-    });
-
-    li.addEventListener("click", function () {
-      li.classList.toggle("text-decoration-line-through");
-    });
-
-    ul.appendChild(li);
+    // const pp = li.appendChild(p);
     input.value = "";
   }
+  ul.appendChild(p);
 }
