@@ -23,18 +23,29 @@ form.addEventListener("submit", function (event) {
 // }
 //--------------------------------------
 
+//--------------------------------------
+// function add(note) {
+//   let noteText = input.value;
+
+//   if (noteText) {
+//     const li = document.createElement("li");
+//     li.innerHTML = `<p>${noteText}</p>
+//     <p>
+//       <i class="fa fa-pencil-square-o"></i><i class="fa fa-times"></i
+//       </p>
+//       <input type="text" class="edit-note">`;
+
+//     ul.appendChild(li);
+//     input.value = "";
+//   }
+// }
+//--------------------------------------
+
+//--------------------------------------
 function add(note) {
-  let noteText = input.value;
-
-  if (noteText) {
-    const li = document.createElement("li");
-    li.innerHTML = `<p>${noteText}</p>
-    <p>
-      <i class="fa fa-pencil-square-o"></i><i class="fa fa-times"></i
-      </p>
-      <input type="text" class="edit-note">`;
-
-    ul.appendChild(li);
-    input.value = "";
-  }
+  const clone = document.querySelector("#list li").cloneNode(true);
+  clone.firstElementChild.textContent = input.value;
+  ul.appendChild(clone);
+  input.value = "";
 }
+//--------------------------------------
