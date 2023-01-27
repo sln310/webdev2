@@ -62,8 +62,6 @@ const init = () => {
 };
 
 const moveVertical = (element, amount) => {
-  //   const currTop = extractPos(element.style.top);
-  //   element.style.top = `${currTop + amount}px`;
   const currTop = extractPos(element.style.top);
   const newTop = currTop + amount;
   if (newTop > 0 && newTop < maxHeight) {
@@ -73,7 +71,6 @@ const moveVertical = (element, amount) => {
 
 const moveHorizotal = (element, amount) => {
   const currLeft = extractPos(element.style.left);
-  //   element.style.left = `${currLeft + amount}px`;
   const newLeft = currLeft + amount;
   if (newLeft > 0 && newLeft < maxWidth) {
     element.style.left = `${newLeft}px`;
@@ -92,5 +89,5 @@ const moveCoin = () => {
   coin.style.top = `${x}px`;
   coin.style.left = `${y}px`;
 };
-
+// ↑ why : Coin's max height & width are bigger than avator's and sometimes mario cannnot reach the coin
 init();
