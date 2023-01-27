@@ -1,4 +1,9 @@
 const body = document.querySelector("body");
+let maxHeight = 0;
+let maxWidth = 0;
+
+maxWidth = window.innerWidth;
+maxHeight = window.innerHeight;
 
 function isTouching(a, b) {
   const aRect = a.getBoundingClientRect();
@@ -38,10 +43,12 @@ const init = () => {
     }
     if (e.key === "ArrowRight" || e.key === "Right") {
       footstepAudio.play();
+      avatar.style.transform = "scaleX(1)";
       moveHorizotal(avatar, 50);
     }
     if (e.key === "ArrowLeft" || e.key === "Left") {
       footstepAudio.play();
+      avatar.style.transform = "scaleX(-1)";
       moveHorizotal(avatar, -50);
     }
 
@@ -55,13 +62,22 @@ const init = () => {
 };
 
 const moveVertical = (element, amount) => {
+  //   const currTop = extractPos(element.style.top);
+  //   element.style.top = `${currTop + amount}px`;
   const currTop = extractPos(element.style.top);
-  element.style.top = `${currTop + amount}px`;
+  const newTop = currTop + amount;
+  if (newTop > 0 && newTop < maxHeight) {
+    element.style.top = `${newTop}px`;
+  }
 };
 
 const moveHorizotal = (element, amount) => {
   const currLeft = extractPos(element.style.left);
-  element.style.left = `${currLeft + amount}px`;
+  //   element.style.left = `${currLeft + amount}px`;
+  const newLeft = currLeft + amount;
+  if (newLeft > 0 && newLeft < maxWidth) {
+    element.style.left = `${newLeft}px`;
+  }
 };
 
 const extractPos = (position) => {
@@ -72,6 +88,7 @@ const extractPos = (position) => {
 const moveCoin = () => {
   const x = Math.floor(Math.random() * window.innerWidth);
   const y = Math.floor(Math.random() * window.innerHeight);
+
   coin.style.top = `${x}px`;
   coin.style.left = `${y}px`;
 };
