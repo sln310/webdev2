@@ -85,9 +85,10 @@ const extractPos = (position) => {
 const moveCoin = () => {
   const x = Math.floor(Math.random() * window.innerWidth);
   const y = Math.floor(Math.random() * window.innerHeight);
-
-  coin.style.top = `${x}px`;
-  coin.style.left = `${y}px`;
+  if (x < maxWidth && y < maxHeight) {
+    coin.style.top = `${x}px`;
+    coin.style.left = `${y}px`;
+  }
 };
 // ↑ why : Coin's max height & width are bigger than avator's and sometimes mario cannnot reach the coin
 init();
