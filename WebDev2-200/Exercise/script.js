@@ -19,7 +19,5 @@ $(document).ready(function () {
       alert(`New Task: ${input}`);
       $(".notCompleted").append(`<li class="task">${input}</li>`);
     }
-
-    $(".textBox").val("");
   });
 });
