@@ -4,7 +4,7 @@ const images = [
   "./images/sandwich.jpeg",
   "./images/spaghetti.jpeg",
 ];
-// window.onload = function () {
+
 const img = document.querySelector("img");
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -12,9 +12,10 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const slide = document.getElementsByClassName("imageCarousel");
-const prev = document.getElementById("prev-button");
-const next = document.getElementById("next-button");
+const prev = document.querySelector("#prev-button");
+const next = document.querySelector("#next-button");
 
+// ----------------------
 let count = 0;
 
 function goNext() {
@@ -43,3 +44,4 @@ function change() {
 
 next.addEventListener("click", goNext, false);
 prev.addEventListener("click", goBack, false);
+// ----------------------
