@@ -34,7 +34,7 @@ async function add(event) {
 
   console.log(responseData);
 
-  const postElClone = document.importNode(postTemplate.body, true);
+  const postElClone = document.importNode(postTemplate.content, true);
   postElClone.querySelector("h2").textContent = responseData.addTitle;
   postElClone.querySelector("p").textContent = responseData.addContent;
   postElClone.querySelector("li").id = responseData.id;
