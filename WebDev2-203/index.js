@@ -21,28 +21,33 @@ async function sendHttpRequest(method, url) {
   // return axios.get(url)
 }
 
+//----------------------------------------------------------------------------------
+
 async function add(event) {
   event.preventDefault();
   const addTitle = title.value;
   const addContent = content.value;
 
-  const responseData = await sendHttpRequest(
-    "POST",
-    "https://jsonplaceholder.typicode.com/posts",
-    { addTitle, addContent }
-  );
+  const data = { userId: 0, title: addTitle, body: addContent };
 
-  console.log(responseData);
+  await axios
+    .post("https://jsonplaceholder.typicode.com/posts", data)
+    .then((response) => {
+      const newDate = response.data;
+      console.log(newDate);
 
-  const postElClone = document.importNode(postTemplate.content, true);
-  postElClone.querySelector("h2").textContent = responseData.addTitle;
-  postElClone.querySelector("p").textContent = responseData.addContent;
-  postElClone.querySelector("li").id = responseData.id;
-  listElement.appendChild(postElClone);
+      const postElClone = document.importNode(postTemplate.content, true);
+      postElClone.querySelector("h2").textContent = newDate.title;
+      postElClone.querySelector("p").textContent = newDate.body;
+      postElClone.querySelector("li").id = newDate.id;
+      listElement.appendChild(postElClone);
+    })
+    .catch((error) => console.log(error));
+  title.value = "";
+  content.value = "";
 }
 
-title.value = "";
-content.value = "";
+//----------------------------------------------------------------------------------
 
 async function fetchPosts() {
   const responseData = await sendHttpRequest(
@@ -64,3 +69,5 @@ async function fetchPosts() {
 
 // READ/GET
 fetchButton.addEventListener("click", fetchPosts);
+//POST
+addButton.addEventListener("click", add);
