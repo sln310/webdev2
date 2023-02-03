@@ -151,7 +151,7 @@ GET, POST, PUT,　DELETE
 ```bash
 //Write your answer here:
 JSON is a "data format" based on JavaScript object notation.
-It can be used and created by other languages. and can not contain functions
+It can be used and created by other languages and can not contain functions
 
 JavaScript object is a type value of the form object and it can contain functions.
 
