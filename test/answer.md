@@ -62,7 +62,7 @@ getQuote()
     .catch((error) => {
         console.error(error)
     })
-```
+
 
 //answer
 async () => {
@@ -70,18 +70,23 @@ const quote = await getQuote()
 console.log(quote)
 }
 
+```
+
 ## 8) Convert this code to arrow function
 
 ```bash
 function greeting(firstname, lastname){
     return `Hi ${firstname} ${lastname}`;
 }
-```
+
 
 //answer
 let greeting = (firstname, lastname) => {
 return `Hi ${firstname} ${lastname}`;
 }
+
+
+```
 
 ## 9) Explain what a callback function is
 
@@ -112,10 +117,13 @@ for(const property1 in object1){
 }
 
 console.log(string1);
-```
+
 
 //answer
 123
+
+
+```
 
 ## 12) What data type would Array.map() and Array.filter() return?
 
