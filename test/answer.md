@@ -150,14 +150,9 @@ GET, POST, PUT,　DELETE
 
 ```bash
 //Write your answer here:
-JSON
 JSON is a "data format" based on JavaScript object notation.
-JSON data cannot be treated as when referring to members of an object.
-Cannot write trailing commas ( , ).
-Cannot use anything other than double quotation marks for keys
-Keys must be enclosed in quotation marks when declared
+It can be used and created by other languages. and can not contain functions
 
-JavaScript object
-JavaScript object is a type value of the form object. So you can refer to or assign values in an object as members of a variable that is an object.
+JavaScript object is a type value of the form object and it can contain functions.
 
 ```
