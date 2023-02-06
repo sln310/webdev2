@@ -25,11 +25,39 @@
 //   },
 // ];
 
-const product = sendHttpRequest(
-  "GET",
-  "https://jsonplaceholder.typicode.com/posts"
-);
+// const API = "https://fakestoreapi.com/products";
 
+async function callApi() {
+  const res = await fetch("https://fakestoreapi.com/products");
+  const aaa = await res.json();
+  return aaa;
+}
+
+callApi();
+
+let product = JSON.parse(aaa);
+
+// const product = sendHttpRequest(
+//   "GET",
+//   "https://jsonplaceholder.typicode.com/posts"
+// );
+// const product = await fetch("https://fakestoreapi.com/products");
+//   .then((res) => res.json())
+//   .then((json) => console.log(json));
+
+// fetch("https://jsonplaceholder.typicode.com/posts")
+//   .then((response) => response.text())
+//   .then((text) => {
+//     console.log(text);
+//   });
+
+// const product = [];
+
+// callApi.forEach((value) => {
+//   product.push(value.userId);
+// });
+
+//------------------------------------------------
 const categories = [
   ...new Set(
     product.map((item) => {
@@ -58,6 +86,89 @@ document.getElementById("root").innerHTML = categories
   })
   .join("");
 
+//-----------------------------
+// document.addEventListener("DOMContentLoaded", function () {
+//     let products = document.querySelector("#root");
+//     async function fetchProducts(url) {
+//       try {
+//         let data = await fetch(url);
+//         let response = await data.json();
+
+//         for (let i = 0; i < response.length; i++) {
+//           let description = response[i].description;
+//           let title = response[i].title;
+//           products.innerHTML +=
+//             `
+//         <div class="box">
+//         <div class='img-box'>
+//                     <img class="images" src="${response[i].images[1]}" alt="${
+//               response[i].category.name
+//             }" ></img>
+//                <div class='bottom'>
+//                    <p>${
+//                      title.length > 18
+//                        ? title.substring(0, 18).concat(" ...")
+//                        : title
+//                    }</p>
+
+//                     <h2>$${response[i].price}</h2>` +
+//             "<button onclick='addtocart(" +
+//             i++ +
+//             ")'>Add to cart</button>" +
+//             `</div>
+//                </div>`;
+//         }
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     }
+//     fetchProducts("https://api.escuelajs.co/api/v1/products");
+//   })
+//   .join("");
+//--------------------------------------
+// document.addEventListener("DOMContentLoaded", function () {
+//   let products = document.querySelector(".container");
+//   async function fetchProducts(url) {
+//     try {
+//       let data = await fetch(url);
+//       let response = await data.json();
+
+//       for (let i = 0; i < response.length; i++) {
+//         let description = response[i].description;
+//         let title = response[i].title;
+//         products.innerHTML += `
+//        <div class="box">
+//            <img src="${response[i].images[1]}" alt="${
+//           response[i].category.name
+//         }" class="product-img">
+//            <div class="product-content">
+//            <h2 class="product-title">${
+//              title.length > 18 ? title.substring(0, 18).concat(" ...") : title
+//            }</h2>
+//            <h4 class="product-category">${response[i].category.name}</h4>
+//            <p class="product-description">${
+//              description.length > 80
+//                ? description.substring(0, 80).concat(" ...more")
+//                : description
+//            }</p>
+//            <div class="product-price-container">
+//                <h3 class="product-price">$${response[i].price}</h3>
+//                <a href="#!" data-productId="${
+//                  response[i].id
+//                }" class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></a>
+//            </div>
+//            </div>
+
+//        </div>
+//        `;
+//       }
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+//   fetchProducts("https://api.escuelajs.co/api/v1/products");
+// });
+//--------------------------------------
 var cart = [];
 
 function addtocart(a) {
