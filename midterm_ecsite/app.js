@@ -123,24 +123,23 @@ function getProductFromStorage() {
 function loadCart() {
   let products = getProductFromStorage();
   if (products.length < 1) {
-    cartItemID = 1; // if there is no any product in the local storage
+    cartItemID = 1;
   } else {
     cartItemID = products[products.length - 1].id;
     cartItemID++;
-    // else get the id of the last product and increase it by 1
   }
   products.forEach((product) => addToCartList(product));
 
-  // calculate and update UI of cart info
+  // calculate
   updateCartInfo();
 }
 
 function findCartInfo() {
   let products = getProductFromStorage();
   let total = products.reduce((acc, product) => {
-    let price = parseFloat(product.price.substr(1)); // removing dollar sign
+    let price = parseFloat(product.price.substr(1));
     return (acc += price);
-  }, 0); // adding all the prices
+  }, 0); // adding
 
   return {
     total: total.toFixed(2),
@@ -152,16 +151,15 @@ function deleteProduct(e) {
   let cartItem;
   if (e.target.tagName === "BUTTON") {
     cartItem = e.target.parentElement;
-    cartItem.remove(); // this removes from the DOM only
+    cartItem.remove();
   } else if (e.target.tagName === "I") {
     cartItem = e.target.parentElement.parentElement;
-    cartItem.remove(); // this removes from the DOM only
+    cartItem.remove();
   }
 
   let products = getProductFromStorage();
   let updatedProducts = products.filter((product) => {
     return product.id !== parseInt(cartItem.dataset.id);
   });
-  localStorage.setItem("products", JSON.stringify(updatedProducts)); // updating the product list after the deletion
-  updateCartInfo();
+  localStorage.setItem("products", JSON.stringify(updatedProducts));
 }
