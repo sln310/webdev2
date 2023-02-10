@@ -27,15 +27,24 @@
 
 // const API = "https://fakestoreapi.com/products";
 
-async function callApi() {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const aaa = await res.json();
-  return aaa;
-}
+// async function callApi() {
+//   const res = await fetch("https://fakestoreapi.com/products");
+//   const aaa = await res.json();
+//   return aaa;
+// }
 
-callApi();
+// callApi();
 
-let product = JSON.parse(aaa);
+//JSON文字列に変換する
+// const res = await fetch("https://fakestoreapi.com/products");
+// const aaa = await res.json();
+// return aaa;
+// const json = JSON.stringify("https://fakestoreapi.com/products");
+// JSON文字列からオブジェクトに変換する
+// const product = JSON.parse(json);
+// console.log(aaa);
+
+// let product = JSON.parse(aaa);
 
 // const product = sendHttpRequest(
 //   "GET",
@@ -56,6 +65,19 @@ let product = JSON.parse(aaa);
 // callApi.forEach((value) => {
 //   product.push(value.userId);
 // });
+
+function readJson() {
+  //サンプルのjsonデータの格納URLを変数で定義する
+  let url = "https://fakestoreapi.com/products";
+  //URLにリクエストしてレスポンスとしてjsonデータを読み込む
+  let response = UrlFetchApp.fetch(url).getContentText();
+  console.log(response);
+  //そのままではjsonとして値の取り出しができない(undefinedに)
+  //   console.log(response);
+  //そのままではスクリプトで処理できないのでparseする
+  let json = JSON.parse(response);
+  console.log(json);
+}
 
 //------------------------------------------------
 const categories = [

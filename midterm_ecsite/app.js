@@ -8,37 +8,31 @@ let cartItemID = 1;
 
 eventListeners();
 
-// all event listeners
 function eventListeners() {
   window.addEventListener("DOMContentLoaded", () => {
     loadJSON();
     loadCart();
   });
-  // toggle navbar when toggle button is clicked
+
   document.querySelector(".navbar-toggler").addEventListener("click", () => {
     document.querySelector(".navbar-collapse").classList.toggle("show-navbar");
   });
 
-  // show/hide cart container
   document.getElementById("cart-btn").addEventListener("click", () => {
     cartContainer.classList.toggle("show-cart-container");
   });
 
-  // add to cart
   productList.addEventListener("click", purchaseProduct);
 
-  // delete from cart
   cartList.addEventListener("click", deleteProduct);
 }
 
-// update cart info
 function updateCartInfo() {
   let cartInfo = findCartInfo();
   cartCountInfo.textContent = cartInfo.productCount;
   cartTotalValue.textContent = cartInfo.total;
 }
 
-// load product items content form JSON file
 function loadJSON() {
   fetch("https://fakestoreapi.com/products")
     .then((response) => response.json())
@@ -57,6 +51,7 @@ function loadJSON() {
                     <div class = "product-content">
                         <h3 class = "product-name">${product.title}</h3>
                         <span class = "product-category">${product.category}</span>
+                        <p class = "product-price">$${product.quantity}</p>
                         <p class = "product-price">$${product.price}</p>
                     </div>
                 </div>
@@ -66,11 +61,9 @@ function loadJSON() {
     })
     .catch((error) => {
       alert(`User live server or local server`);
-      //URL scheme must be "http" or "https" for CORS request. You need to be serving your index.html locally or have your site hosted on a live server somewhere for the Fetch API to work properly.
     });
 }
 
-// purchase product
 function purchaseProduct(e) {
   if (e.target.classList.contains("add-to-cart-btn")) {
     let product = e.target.parentElement.parentElement;
@@ -78,7 +71,6 @@ function purchaseProduct(e) {
   }
 }
 
-// get product info after add to cart button click
 function getProductInfo(product) {
   let productInfo = {
     id: cartItemID,
@@ -92,7 +84,6 @@ function getProductInfo(product) {
   saveProductInStorage(productInfo);
 }
 
-// add the selected product to the cart list
 function addToCartList(product) {
   const cartItem = document.createElement("div");
   cartItem.classList.add("cart-item");
@@ -100,8 +91,12 @@ function addToCartList(product) {
   cartItem.innerHTML = `
         <img src = "${product.imgSrc}" alt = "product image">
         <div class = "cart-item-info">
+        
             <h3 class = "cart-item-name">${product.name}</h3>
             <span class = "cart-item-category">${product.category}</span>
+            
+        </div>
+        
             <span class = "cart-item-price">${product.price}</span>
         </div>
 
@@ -112,7 +107,6 @@ function addToCartList(product) {
   cartList.appendChild(cartItem);
 }
 
-// save the product in the local storage
 function saveProductInStorage(item) {
   let products = getProductFromStorage();
   products.push(item);
@@ -120,15 +114,12 @@ function saveProductInStorage(item) {
   updateCartInfo();
 }
 
-// get all the products info if there is any in the local storage
 function getProductFromStorage() {
   return localStorage.getItem("products")
     ? JSON.parse(localStorage.getItem("products"))
     : [];
-  // returns empty array if there isn't any product info
 }
 
-// load carts product
 function loadCart() {
   let products = getProductFromStorage();
   if (products.length < 1) {
@@ -144,7 +135,6 @@ function loadCart() {
   updateCartInfo();
 }
 
-// calculate total price of the cart and other info
 function findCartInfo() {
   let products = getProductFromStorage();
   let total = products.reduce((acc, product) => {
@@ -158,7 +148,6 @@ function findCartInfo() {
   };
 }
 
-// delete product from cart list and local storage
 function deleteProduct(e) {
   let cartItem;
   if (e.target.tagName === "BUTTON") {
