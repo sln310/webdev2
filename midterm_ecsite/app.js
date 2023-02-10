@@ -51,7 +51,6 @@ function loadJSON() {
                     <div class = "product-content">
                         <h3 class = "product-name">${product.title}</h3>
                         <span class = "product-category">${product.category}</span>
-                        <p class = "product-price">$${product.quantity}</p>
                         <p class = "product-price">$${product.price}</p>
                     </div>
                 </div>
@@ -78,6 +77,7 @@ function getProductInfo(product) {
     name: product.querySelector(".product-name").textContent,
     category: product.querySelector(".product-category").textContent,
     price: product.querySelector(".product-price").textContent,
+    quantity: 1,
   };
   cartItemID++;
   addToCartList(productInfo);
@@ -96,6 +96,7 @@ function addToCartList(product) {
             <span class = "cart-item-category">${product.category}</span>
             
         </div>
+        <p class = "product-price">$${product.quantity}</p>
         
             <span class = "cart-item-price">${product.price}</span>
         </div>
