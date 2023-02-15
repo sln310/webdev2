@@ -3,6 +3,7 @@
     
   </head>
   <body>
+    <p>How many cats do you want to see?</p>
     <form method="post">
     <input type="text" name="number" value="">
     <input type="submit">
